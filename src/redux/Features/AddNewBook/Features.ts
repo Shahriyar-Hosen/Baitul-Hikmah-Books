@@ -1,24 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-export interface IReviews {
-  name?: string;
-  email?: string;
-  message?: string;
-}
-export interface IBook {
-  title: string;
-  author: string;
-  genre: string;
-  publicationDate: string;
-  publisherEmail: string;
-  imgUrl: string;
-  reviews: IReviews[];
-  id?: string;
-}
-
-interface BookState {
-  books: IBook[];
-}
+import { BookState, IBook } from "../../../types";
 
 const initialState: BookState = {
   books: [],
