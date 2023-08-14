@@ -1,4 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
+export interface IReviews {
+  name?: string;
+  email?: string;
+  message?: string;
+}
 export interface IBook {
   title: string;
   author: string;
@@ -6,13 +12,7 @@ export interface IBook {
   publicationDate: string;
   publisherEmail: string;
   imgUrl: string;
-  reviews: [
-    {
-      name?: string;
-      email?: string;
-      message?: string;
-    }
-  ];
+  reviews: IReviews[];
   id?: string;
 }
 
