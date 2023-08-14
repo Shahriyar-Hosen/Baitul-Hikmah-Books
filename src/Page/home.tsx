@@ -8,8 +8,7 @@ import { IBook } from "../redux/Features/AddNewBook/Features";
 import { useGetBooksQuery } from "../redux/Features/Book/bookApi";
 
 const Home = () => {
-  const { data: allData, isLoading, isError } = useGetBooksQuery(undefined);
-  const data = allData;
+  const { data, isLoading, isError } = useGetBooksQuery(undefined);
   let content = null;
 
   (isLoading &&
@@ -19,8 +18,8 @@ const Home = () => {
     (!isLoading && isError && (content = <Error />)) ||
     (!isLoading &&
       !isError &&
-      data?.length > 0 &&
-      (content = data?.map((book: IBook) => (
+      data?.data?.length > 0 &&
+      (content = data?.data?.map((book: IBook) => (
         <BookCard key={book?.id} book={book} />
       ))));
 
