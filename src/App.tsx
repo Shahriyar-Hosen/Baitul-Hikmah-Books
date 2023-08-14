@@ -1,12 +1,6 @@
-import MainLayout from "./layouts/MainLayout";
 import "react-toastify/dist/ReactToastify.css";
+import MainLayout from "./layouts/MainLayout";
 
-function App() {
-  return (
-    <div>
-      <MainLayout />
-    </div>
-  );
-}
+const App = () => <MainLayout />;
 
 export default App;
