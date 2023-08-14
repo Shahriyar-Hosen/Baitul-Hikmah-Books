@@ -1,6 +1,6 @@
 import From from "../components/ui/From";
 
-const AddNewBook = () => {
+export const AddNewBook = () => {
   return (
     <main className="py-6 2xl:px-6">
       <div className="container">
@@ -12,5 +12,3 @@ const AddNewBook = () => {
     </main>
   );
 };
-
-export default AddNewBook;

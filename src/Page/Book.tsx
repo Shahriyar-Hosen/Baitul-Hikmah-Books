@@ -11,7 +11,7 @@ import {
 } from "../redux/Features/Book/bookApi";
 import { IBook } from "../types";
 
-const Book = () => {
+export const Book = () => {
   const navigate = useNavigate();
   const param = useParams();
   const { data } = useSingleBookQuery(param.id!);
@@ -106,5 +106,3 @@ const Book = () => {
     </div>
   );
 };
-
-export default Book;

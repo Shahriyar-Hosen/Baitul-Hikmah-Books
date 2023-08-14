@@ -7,7 +7,7 @@ import BookCardLoader from "../components/ui/Loader/BookCardLoader";
 import { useGetBooksQuery } from "../redux/Features/Book/bookApi";
 import { IBook } from "../types";
 
-export const Home = () => {
+export const Books = () => {
   const { data, isLoading, isError } = useGetBooksQuery(undefined);
   let content = null;
 

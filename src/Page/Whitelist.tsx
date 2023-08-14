@@ -7,7 +7,7 @@ import useProfile from "../hooks/useProfile";
 import { useGetWhiteListQuery } from "../redux/Features/Whitelist/whitelistApi";
 import { IBook } from "../types";
 
-const Whitelist = () => {
+export const Whitelist = () => {
   const { data, isLoading, isError } = useGetWhiteListQuery(undefined);
   const { profile } = useProfile();
   let content = null;
@@ -46,5 +46,3 @@ const Whitelist = () => {
     </main>
   );
 };
-
-export default Whitelist;

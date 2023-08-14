@@ -12,7 +12,7 @@ import {
 } from "../redux/Features/Auth/authSlice";
 import { IErrorResponse, ILoginResponse } from "../types/Common";
 
-const Login = () => {
+export const Login = () => {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
 
@@ -87,5 +87,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;

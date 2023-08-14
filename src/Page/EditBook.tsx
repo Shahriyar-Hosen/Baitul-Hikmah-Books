@@ -5,7 +5,7 @@ import From from "../components/ui/From";
 import { useSingleBookQuery } from "../redux/Features/Book/bookApi";
 import { IBook } from "../types";
 
-const EditBook = () => {
+export const EditBook = () => {
   const params = useParams();
   const { data } = useSingleBookQuery(params.id!);
   const result: IBook = data?.data;
@@ -20,5 +20,3 @@ const EditBook = () => {
     </main>
   );
 };
-
-export default EditBook;

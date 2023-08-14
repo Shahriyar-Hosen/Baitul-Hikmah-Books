@@ -6,7 +6,7 @@ import CommonInput from "../components/ui/Common/CommonInput";
 import Logo from "../components/ui/Logo";
 import { useSignUpMutation } from "../redux/Features/Auth/authSlice";
 
-const Register = () => {
+export const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
@@ -88,5 +88,3 @@ const Register = () => {
     </div>
   );
 };
-
-export default Register;
