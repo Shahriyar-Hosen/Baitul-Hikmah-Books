@@ -10,8 +10,8 @@ const Footer = () => {
           <Logo />
           <div>
             <p className="text-white text-xl">
-              BookOry - Providing the best collection of books to readers around
-              the world.
+              Baitul Hikmah eBook Library - Providing the best collection of
+              books to readers around the world.
             </p>
             <p className="text-white text-sm mt-1">
               Address: 123 Book Street, Cityville, Country
