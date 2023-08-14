@@ -5,12 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/ui/Common/Button";
 import CommonInput from "../components/ui/Common/CommonInput";
 import Error from "../components/ui/Error";
+import Logo from "../components/ui/Logo";
 import {
   useGetProfileQuery,
   useLoginMutation,
 } from "../redux/Features/Auth/authSlice";
 import { IErrorResponse, ILoginResponse } from "../types/Common";
-import Logo from "../components/ui/Logo";
 
 const Login = () => {
   const [email, setEmail] = useState<string>();
