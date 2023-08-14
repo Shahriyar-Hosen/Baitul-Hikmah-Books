@@ -8,20 +8,21 @@ import { IBook } from "../redux/Features/AddNewBook/Features";
 import { useGetBooksQuery } from "../redux/Features/Book/bookApi";
 
 const Home = () => {
-  const { data, isLoading, isError } = useGetBooksQuery(undefined);
+  const { data: allData, isLoading, isError } = useGetBooksQuery(undefined);
+  const data = allData;
   let content = null;
 
-  if (isLoading)
-    content = Array.from(Array(3).keys()).map((el) => (
+  (isLoading &&
+    (content = Array.from(Array(3).keys()).map((el) => (
       <BookCardLoader key={el} />
-    ));
-
-  if (!isLoading && isError) content = <Error />;
-
-  if (!isLoading && !isError && data?.data.length > 0)
-    content = data?.data?.map((book: IBook) => (
-      <BookCard key={book?.id} book={book} />
-    ));
+    )))) ||
+    (!isLoading && isError && (content = <Error />)) ||
+    (!isLoading &&
+      !isError &&
+      data?.length > 0 &&
+      (content = data?.map((book: IBook) => (
+        <BookCard key={book?.id} book={book} />
+      ))));
 
   return (
     <main className="py-12 px-6 2xl:px-6 container">
