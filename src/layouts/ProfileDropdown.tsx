@@ -1,39 +1,53 @@
 import { Dispatch, SetStateAction } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { IProfileResponse } from "../types/Auth";
 
-const ProfileDropdown = ({
-  data,
-  setOpenProfile,
-}: {
+export interface IProfileDropdown {
   data: IProfileResponse;
   setOpenProfile: Dispatch<SetStateAction<boolean | undefined>>;
-}) => {
+}
+
+const ProfileDropdown = ({ data, setOpenProfile }: IProfileDropdown) => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     setOpenProfile(false);
     window.location.reload();
   };
-  console.log(data.data);
+
   return (
     <div className="absolute -left-20 mt-2 mr-2 w-[150px]">
       <ul className=" p-3 bg-white shadow-md rounded-md">
-        <Link to="/">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "font-semibold cursor-pointer" : "cursor-pointer"
+          }
+          to="/"
+        >
           <li className="p-1 font-medium">
             {data.data?.name.firstName + " " + data.data?.name.lastName}
           </li>
-        </Link>
-        <Link to="/">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "font-semibold cursor-pointer" : "cursor-pointer"
+          }
+          to="/"
+        >
           <li className="p-1">Profile</li>
-        </Link>
-        <Link to="/add-book" className="cursor-pointer" id="mhr-addBook">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "font-semibold cursor-pointer" : "cursor-pointer"
+          }
+          to="/add-book"
+          id="mhr-addBook"
+        >
           <li className="p-1">Add Book</li>
-        </Link>
-        <>
-          <li className="p-1 cursor-pointer" onClick={() => handleLogout()}>
-            Logout
-          </li>
-        </>
+        </NavLink>
+
+        <li className="p-1 cursor-pointer" onClick={() => handleLogout()}>
+          Logout
+        </li>
       </ul>
     </div>
   );

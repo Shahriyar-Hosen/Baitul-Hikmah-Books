@@ -3,6 +3,7 @@ import App from "../App";
 import {
   AddNewBook,
   Book,
+  Books,
   EditBook,
   Home,
   Login,
@@ -21,12 +22,16 @@ const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "add-book",
-        element: <AddNewBook />,
+        path: "books",
+        element: <Books />,
       },
       {
         path: "whitelist",
         element: <Whitelist />,
+      },
+      {
+        path: "add-book",
+        element: <AddNewBook />,
       },
       {
         path: "book/:id",

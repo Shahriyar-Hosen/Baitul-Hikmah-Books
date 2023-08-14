@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../components/ui/Logo";
 import { useGetProfileQuery } from "../redux/Features/Auth/authSlice";
 import ProfileDropdown from "./ProfileDropdown";
@@ -15,23 +15,33 @@ const Navbar = () => {
         <Logo />
 
         <ul className="hidden md:flex items-center space-x-6">
-          <a
-            className="font-semibold cursor-pointer"
-            href="/"
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "font-semibold cursor-pointer" : "cursor-pointer"
+            }
             id="mhr-bookStore"
           >
             <li>Home</li>
-          </a>
-          <Link to="/" className="cursor-pointer" id="mhr-addBook">
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "font-semibold cursor-pointer" : "cursor-pointer"
+            }
+            to="/books"
+            id="mhr-addBook"
+          >
             <li>All Book</li>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "font-semibold cursor-pointer" : "cursor-pointer"
+            }
             to={`${data?.data.email ? "/whitelist" : "/login"}`}
-            className="cursor-pointer"
             id="mhr-addBook"
           >
             <li>Whitelist</li>
-          </Link>
+          </NavLink>
         </ul>
 
         <div>
@@ -52,9 +62,15 @@ const Navbar = () => {
                 )}
               </div>
             ) : (
-              <Link to="/login" className="cursor-pointer" id="mhr-addBook">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "font-semibold cursor-pointer" : "cursor-pointer"
+                }
+                to="/login"
+                id="mhr-addBook"
+              >
                 <li>Login</li>
-              </Link>
+              </NavLink>
             )}
           </ul>
         </div>
