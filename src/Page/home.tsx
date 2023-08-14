@@ -4,34 +4,25 @@
 import BookCard from "../components/ui/BookCard";
 import Error from "../components/ui/Error";
 import BookCardLoader from "../components/ui/Loader/BookCardLoader";
-import { IBook } from "../redux/Fetaures/AddNewBook/addNewBookSlice";
-import { useGetBooksQuery } from "../redux/Fetaures/Book/bookApi";
+import { IBook } from "../redux/Features/AddNewBook/Features";
+import { useGetBooksQuery } from "../redux/Features/Book/bookApi";
 
 const Home = () => {
   const { data, isLoading, isError } = useGetBooksQuery(undefined);
   let content = null;
 
-  if (isLoading) {
-    content = (
-      <>
-        <BookCardLoader />
-        <BookCardLoader />
-        <BookCardLoader />
-      </>
-    );
-  }
-  if (!isLoading && isError) {
-    content = <Error />;
-  }
-  if (!isLoading && !isError && data?.data.length > 0) {
-    content = (
-      <>
-        {data?.data?.map((book: IBook) => (
-          <BookCard key={book?.id} book={book} />
-        ))}
-      </>
-    );
-  }
+  if (isLoading)
+    content = Array.from(Array(3).keys()).map((el) => (
+      <BookCardLoader key={el} />
+    ));
+
+  if (!isLoading && isError) content = <Error />;
+
+  if (!isLoading && !isError && data?.data.length > 0)
+    content = data?.data?.map((book: IBook) => (
+      <BookCard key={book?.id} book={book} />
+    ));
+
   return (
     <main className="py-12 px-6 2xl:px-6 container">
       <div className="order-2 xl:-order-1">

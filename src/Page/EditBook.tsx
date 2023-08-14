@@ -3,7 +3,7 @@
 import { useParams } from "react-router-dom";
 import From from "../components/ui/From";
 import { useSingleBookQuery } from "../redux/Fetaures/Book/bookApi";
-import { IBook } from "../redux/Fetaures/AddNewBook/addNewBookSlice";
+import { IBook } from "../redux/Fetaures/AddNewBook/Features";
 
 const EditBook = () => {
   const params = useParams();

@@ -4,7 +4,7 @@ import BookCardLoader from "../components/ui/Loader/BookCardLoader";
 import { useGetWhiteListQuery } from "../redux/Fetaures/Whitelist/whitelistApi";
 import Error from "../components/ui/Error";
 import useProfile from "../hooks/useProfile";
-import { IBook } from "../redux/Fetaures/AddNewBook/addNewBookSlice";
+import { IBook } from "../redux/Fetaures/AddNewBook/Features";
 import BookCard from "../components/ui/BookCard";
 
 const Whitelist = () => {

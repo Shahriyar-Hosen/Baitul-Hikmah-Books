@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Link, useNavigate, useParams } from "react-router-dom";
 import bookImg from "../assets/book.jpg";
-import { IBook } from "../redux/Fetaures/AddNewBook/addNewBookSlice";
+import { IBook } from "../redux/Fetaures/AddNewBook/Features";
 import {
   useDeleteBookMutation,
   useSingleBookQuery,

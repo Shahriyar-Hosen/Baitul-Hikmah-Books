@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AddBookReducer from "../redux/Fetaures/AddNewBook/addNewBookSlice";
+import AddBookReducer from "./Fetaures/AddNewBook/Features";
 import { api } from "./Fetaures/Api/apiSlice";
 const store = configureStore({
   reducer: {

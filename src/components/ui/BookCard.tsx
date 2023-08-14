@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Link } from "react-router-dom";
 import useProfile from "../../hooks/useProfile";
-import { IBook } from "../../redux/Fetaures/AddNewBook/addNewBookSlice";
+import { IBook } from "../../redux/Fetaures/AddNewBook/Features";
 import { useAddWhiteListMutation } from "../../redux/Fetaures/Whitelist/whitelistApi";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
