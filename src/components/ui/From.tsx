@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useProfile from "../../hooks/useProfile";
-import { IBook } from "../../redux/Fetaures/AddNewBook/Features";
+import { IBook } from "../../redux/Features/AddNewBook/Features";
 import {
   useAddBookMutation,
   useEditBookMutation,
-} from "../../redux/Fetaures/Book/bookApi";
+} from "../../redux/Features/Book/bookApi";
 import Error from "./Error";
 import Success from "./Success";
 interface FormProps {

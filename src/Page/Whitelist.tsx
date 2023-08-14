@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import BookCardLoader from "../components/ui/Loader/BookCardLoader";
-import { useGetWhiteListQuery } from "../redux/Fetaures/Whitelist/whitelistApi";
-import Error from "../components/ui/Error";
-import useProfile from "../hooks/useProfile";
-import { IBook } from "../redux/Fetaures/AddNewBook/Features";
 import BookCard from "../components/ui/BookCard";
+import Error from "../components/ui/Error";
+import BookCardLoader from "../components/ui/Loader/BookCardLoader";
+import useProfile from "../hooks/useProfile";
+import { IBook } from "../redux/Features/AddNewBook/Features";
+import { useGetWhiteListQuery } from "../redux/Features/Whitelist/whitelistApi";
 
 const Whitelist = () => {
   const { data, isLoading, isError } = useGetWhiteListQuery(undefined);

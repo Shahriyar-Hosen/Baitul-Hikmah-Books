@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../components/ui/Logo";
-import { useGetProfileQuery } from "../redux/Fetaures/Auth/authSlice";
+import { useGetProfileQuery } from "../redux/Features/Auth/authSlice";
 import ProfileDropdown from "./ProfileDropdown";
 
 const Navbar = () => {

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState } from "react";
-import CommonInput from "../components/ui/Common/CommonInput";
-import Button from "../components/ui/Common/Button";
-import { useSignUpMutation } from "../redux/Fetaures/Auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/ui/Common/Button";
+import CommonInput from "../components/ui/Common/CommonInput";
 import Logo from "../components/ui/Logo";
+import { useSignUpMutation } from "../redux/Features/Auth/authSlice";
 
 const Register = () => {
   const [email, setEmail] = useState<string>("");

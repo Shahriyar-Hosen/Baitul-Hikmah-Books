@@ -1,4 +1,4 @@
-import { useGetProfileQuery } from "../redux/Fetaures/Auth/authSlice";
+import { useGetProfileQuery } from "../redux/Features/Auth/authSlice";
 
 const useProfile = () => {
   const token: string | null = localStorage.getItem("accessToken");

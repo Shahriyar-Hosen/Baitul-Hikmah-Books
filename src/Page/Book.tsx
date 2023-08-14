@@ -3,13 +3,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Link, useNavigate, useParams } from "react-router-dom";
 import bookImg from "../assets/book.jpg";
-import { IBook } from "../redux/Fetaures/AddNewBook/Features";
+import ReviewBox from "../components/ReviewBox";
+import useProfile from "../hooks/useProfile";
+import { IBook } from "../redux/Features/AddNewBook/Features";
 import {
   useDeleteBookMutation,
   useSingleBookQuery,
-} from "../redux/Fetaures/Book/bookApi";
-import useProfile from "../hooks/useProfile";
-import ReviewBox from "../components/ReviewBox";
+} from "../redux/Features/Book/bookApi";
 
 const Book = () => {
   const navigate = useNavigate();

@@ -8,7 +8,7 @@ import Error from "../components/ui/Error";
 import {
   useGetProfileQuery,
   useLoginMutation,
-} from "../redux/Fetaures/Auth/authSlice";
+} from "../redux/Features/Auth/authSlice";
 import { IErrorResponse, ILoginResponse } from "../types/Common";
 import Logo from "../components/ui/Logo";
 

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AddBookReducer from "./Fetaures/AddNewBook/Features";
-import { api } from "./Fetaures/Api/apiSlice";
+import AddBookReducer from "./Features/AddNewBook/Features";
+import { api } from "./Features/Api/apiSlice";
 const store = configureStore({
   reducer: {
     addBook: AddBookReducer,
