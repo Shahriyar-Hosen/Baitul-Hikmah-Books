@@ -4,8 +4,8 @@
 import BookCard from "../components/ui/BookCard";
 import Error from "../components/ui/Error";
 import BookCardLoader from "../components/ui/Loader/BookCardLoader";
-import { IBook } from "../redux/Features/AddNewBook/Features";
 import { useGetBooksQuery } from "../redux/Features/Book/bookApi";
+import { IBook } from "../types";
 
 const Home = () => {
   const { data, isLoading, isError } = useGetBooksQuery(undefined);

@@ -1,4 +1,4 @@
-import { IBook } from "../../redux/Features/AddNewBook/Features";
+import { IBook } from "..";
 
 export interface IBookResponse {
   data: {

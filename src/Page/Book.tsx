@@ -5,11 +5,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import bookImg from "../assets/book.jpg";
 import ReviewBox from "../components/ReviewBox";
 import useProfile from "../hooks/useProfile";
-import { IBook } from "../redux/Features/AddNewBook/Features";
 import {
   useDeleteBookMutation,
   useSingleBookQuery,
 } from "../redux/Features/Book/bookApi";
+import { IBook } from "../types";
 
 const Book = () => {
   const navigate = useNavigate();

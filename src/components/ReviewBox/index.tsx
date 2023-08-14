@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { send } from "../../assets/Social Icon";
 import useProfile from "../../hooks/useProfile";
-import { IBook } from "../../redux/Features/AddNewBook/Features";
 import { useAddReviewMutation } from "../../redux/Features/Book/bookApi";
+import { IBook } from "../../types";
 import CommonInput from "../ui/Common/CommonInput";
 import ReviewMessage from "./ReviewMessage";
 

@@ -1,7 +1,7 @@
 import { SerializedError } from "@reduxjs/toolkit";
+import { IBook } from "../../../types";
 import { IBookErrorResponse, IBookResponse } from "../../../types/Book";
 import { IReview } from "../../../types/Common";
-import { IBook } from "../AddNewBook/Features";
 import { api } from "../Api/apiSlice";
 
 const productApi = api.injectEndpoints({

@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import useProfile from "../../hooks/useProfile";
-import { IBook } from "../../redux/Features/AddNewBook/Features";
 import { useAddWhiteListMutation } from "../../redux/Features/Whitelist/whitelistApi";
+import { IBook } from "../../types";
 
 const BookCard = ({ book }: { book: IBook }) => {
   const { author, genre, publicationDate, title, id } = book;

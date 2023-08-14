@@ -4,8 +4,8 @@ import BookCard from "../components/ui/BookCard";
 import Error from "../components/ui/Error";
 import BookCardLoader from "../components/ui/Loader/BookCardLoader";
 import useProfile from "../hooks/useProfile";
-import { IBook } from "../redux/Features/AddNewBook/Features";
 import { useGetWhiteListQuery } from "../redux/Features/Whitelist/whitelistApi";
+import { IBook } from "../types";
 
 const Whitelist = () => {
   const { data, isLoading, isError } = useGetWhiteListQuery(undefined);
@@ -13,13 +13,9 @@ const Whitelist = () => {
   let content = null;
 
   if (isLoading) {
-    content = (
-      <>
-        <BookCardLoader />
-        <BookCardLoader />
-        <BookCardLoader />
-      </>
-    );
+    content = Array.from(Array(3).keys()).map((el) => (
+      <BookCardLoader key={el} />
+    ));
   }
   if (!isLoading && isError) {
     content = <Error />;

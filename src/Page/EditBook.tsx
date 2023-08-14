@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useParams } from "react-router-dom";
 import From from "../components/ui/From";
-import { IBook } from "../redux/Features/AddNewBook/Features";
 import { useSingleBookQuery } from "../redux/Features/Book/bookApi";
+import { IBook } from "../types";
 
 const EditBook = () => {
   const params = useParams();
