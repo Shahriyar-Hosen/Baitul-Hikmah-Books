@@ -20,9 +20,9 @@ export default function MainLayout() {
         pauseOnHover
         theme="light"
       />
-      <div className="pt-16">
+      <main>
         <Outlet />
-      </div>
+      </main>
       <Footer />
     </div>
   );
