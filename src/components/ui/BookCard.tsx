@@ -87,7 +87,6 @@ const BookCard = ({ book }: { book: IBook }) => {
               />
             </svg>
           </div>
-          {/* <p className="mhr-price">BDT price</p> */}
         </div>
       </div>
     </div>
