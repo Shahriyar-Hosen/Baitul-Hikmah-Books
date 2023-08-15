@@ -20,8 +20,8 @@ export const Home = () => {
     (!isLoading &&
       !isError &&
       data?.data?.length > 0 &&
-      (content = data?.data?.map((book: IBook) => (
-        <BookCard key={book?.id} book={book} />
+      (content = data?.data?.map((book: IBook, i: number) => (
+        <BookCard key={i} book={book} />
       ))));
 
   return (

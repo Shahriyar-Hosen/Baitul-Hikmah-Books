@@ -19,8 +19,8 @@ export const Books = () => {
     (!isLoading &&
       !isError &&
       data?.data?.length > 0 &&
-      (content = data?.data?.map((book: IBook) => (
-        <BookCard key={book?.id} book={book} />
+      (content = data?.data?.map((book: IBook, i: number) => (
+        <BookCard key={i} book={book} />
       ))));
 
   return (
@@ -28,15 +28,6 @@ export const Books = () => {
       <div className="order-2 xl:-order-1">
         <div className="flex items-center justify-between mb-12">
           <h4 className="mt-2 text-xl font-bold">Book List</h4>
-
-          <div className="flex items-center space-x-4">
-            {/* <button className={`mhr-filter-btn ${filter.featured === false && "active-filter"}`}
-                        onClick={() => dispatch(filterStatus(false))}
-                    >All</button>
-                    <button className={`mhr-filter-btn ${filter.featured === true && "active-filter"}`}
-                        onClick={() => dispatch(filterStatus(true))}
-                    >Featured</button> */}
-          </div>
         </div>
         <div className="space-y-6 md:space-y-0 md:grid grid-cols-1 lg:grid-cols-3 gap-6">
           {content}
