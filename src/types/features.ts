@@ -11,7 +11,7 @@ export interface IBook {
   publisherEmail: string;
   imgUrl: string;
   reviews: IReviews[];
-  userId?: string;
+  id?: string;
 }
 
 export interface BookState {

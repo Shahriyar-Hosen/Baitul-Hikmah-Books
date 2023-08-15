@@ -62,12 +62,12 @@ const From = ({ book, editMode }: FormProps) => {
   const handleEditBook = async (e: React.FormEvent) => {
     e.preventDefault();
     await editBook({
-      id: book?.userId || "",
+      id: book.id || "",
       data: {
         title: name,
         author,
         genre,
-        userId: book?.userId || "",
+        id: book?.id || "",
         publicationDate: book?.publicationDate || "",
         publisherEmail: book?.publisherEmail || "",
         imgUrl,

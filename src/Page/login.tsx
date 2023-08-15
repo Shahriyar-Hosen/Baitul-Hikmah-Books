@@ -26,6 +26,10 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log({
+      email,
+      password,
+    });
     e.preventDefault();
     await login({
       data: {
@@ -67,7 +71,7 @@ export const Login = () => {
             handleOnChange={setPassword}
           />
 
-          <div className="w-full bg-blue-700 hover:bg-blue-500 rounded-md flex flex-col items-center mb-12">
+          <div className="w-full bg-blue-700 hover:bg-blue-500 rounded-md flex flex-col items-center mb-12 cursor-pointer">
             <Button label="Sign In" />
           </div>
         </form>

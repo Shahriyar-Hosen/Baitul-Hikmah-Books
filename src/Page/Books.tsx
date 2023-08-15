@@ -10,6 +10,7 @@ import { IBook } from "../types";
 export const Books = () => {
   const { data, isLoading, isError } = useGetBooksQuery(undefined);
   let content = null;
+  console.log("Books state Data:-", data?.data);
 
   (isLoading &&
     (content = Array.from(Array(3).keys()).map((el) => (

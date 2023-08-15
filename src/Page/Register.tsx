@@ -16,6 +16,14 @@ export const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log({
+      email,
+      password,
+      name: {
+        firstName,
+        lastName,
+      },
+    });
     e.preventDefault();
     await signUp({
       data: {
@@ -38,6 +46,7 @@ export const Register = () => {
           <Logo />
           <h2 className="mt-4 text-3xl text-center font-bold">Register</h2>
         </div>
+
         <form onSubmit={handleSubmit}>
           <CommonInput
             label="First Name"
@@ -71,10 +80,11 @@ export const Register = () => {
             value={password}
             handleOnChange={setPassword}
           />
-          <div className="w-full bg-blue-700 hover:bg-blue-700 rounded-md flex flex-col items-center mb-12">
+          <div className="w-full bg-blue-700 hover:bg-blue-700 rounded-md flex flex-col items-center mb-12 cursor-pointer">
             <Button label="Sign up" />
           </div>
         </form>
+
         <a href="/login" className="text-sm flex gap-2 justify-center mb-6">
           Already have an account?{" "}
           <span className="text-blue-500 hover:text-blue-800"> Login</span>
