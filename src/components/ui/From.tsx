@@ -13,7 +13,7 @@ import { IBook } from "../../types";
 import Error from "./Error";
 import Success from "./Success";
 interface FormProps {
-  book: IBook;
+  book?: IBook;
   editMode?: boolean;
 }
 
@@ -62,7 +62,7 @@ const From = ({ book, editMode }: FormProps) => {
   const handleEditBook = async (e: React.FormEvent) => {
     e.preventDefault();
     await editBook({
-      id: book.id || "",
+      id: book?.id || "",
       data: {
         title: name,
         author,
