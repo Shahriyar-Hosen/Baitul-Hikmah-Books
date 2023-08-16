@@ -1,14 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
-import AddBookReducer from "./Features/AddNewBook/Features";
-import { api } from "./Features/Api/apiSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import { authApi } from './api/authApi';
+import { bookApi } from './api/bookApi';
+import updateBookReducer from './features/bookSlice';
+import searchReducer from './features/searchSlice';
 const store = configureStore({
   reducer: {
-    addBook: AddBookReducer,
-    [api.reducerPath]: api.reducer,
+    [authApi.reducerPath]: authApi.reducer,
+    [bookApi.reducerPath]: bookApi.reducer,
+    updateBook: updateBookReducer,
+    search: searchReducer,
   },
-  middleware: (getDefaultMiddlewares) =>
-    getDefaultMiddlewares().concat(api.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(authApi.middleware, bookApi.middleware),
 });
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
