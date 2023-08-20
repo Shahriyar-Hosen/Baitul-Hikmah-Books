@@ -1,40 +1,34 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home';
-import App from '../App';
-import NotFound from '../pages/NotFound';
-import AllBooks from '@/pages/Books/AllBooks';
-import SignIn from '@/pages/Auth/SignIn';
-import SignUp from '@/pages/Auth/SignUp';
-import AddBook from '@/pages/Books/AddBook';
-import SingleBook from '@/pages/Books/SingleBook';
-import UpdateBook from '@/pages/Books/UpdateBook';
-import Wishlist from '@/pages/Wishlist/Wishlist';
-import PlanToRead from '@/pages/PlanToRead/PlanToRead';
-import PrivateRoute from './PrivateRoute';
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
+import AddBook from "../pages/AddBook";
+import AllBooks from "../pages/AllBooks";
+import UpdateBook from "../pages/UpdateBook";
+import SignUp from "../pages/SignUp";
+import SignIn from "../pages/SignIn";
+import BookList from "../components/ui/BookList";
+import BookDetails from "../pages/BookDetails";
+import PrivateRoute from "./PrivateRoute";
+import ReadlingList from "../pages/ReadlingList";
 
 const routes = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
-        index: true,
-        element: <Home />,
+        path: "/",
+        element: <BookList />,
       },
       {
-        path: '/user/signin',
-        element: <SignIn />,
-      },
-      {
-        path: '/user/signup',
-        element: <SignUp />,
-      },
-      {
-        path: '/all-books',
+        path: "/all-books",
         element: <AllBooks />,
       },
       {
-        path: '/add-new-book',
+        path: "/book-details/:id",
+        element: <BookDetails />,
+      },
+      {
+        path: "/add-book",
         element: (
           <PrivateRoute>
             <AddBook />
@@ -42,34 +36,26 @@ const routes = createBrowserRouter([
         ),
       },
       {
-        path: '/book/:id',
-        element: <SingleBook />,
+        path: "/reading-list/:email",
+        element: (
+          <PrivateRoute>
+            <ReadlingList />
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/update-book/:id',
+        path: "/update-book/:id",
         element: <UpdateBook />,
-      },
-      {
-        path: '/book/wishlist',
-        element: (
-          <PrivateRoute>
-            <Wishlist />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: '/book/plan-to-read',
-        element: (
-          <PrivateRoute>
-            <PlanToRead />
-          </PrivateRoute>
-        ),
       },
     ],
   },
   {
-    path: '*',
-    element: <NotFound></NotFound>,
+    path: "/sign-up",
+    element: <SignUp />,
+  },
+  {
+    path: "/sign-in",
+    element: <SignIn />,
   },
 ]);
 
