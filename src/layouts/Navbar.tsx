@@ -46,7 +46,7 @@ export default function Navbar() {
             onClick={() => navigate("/")}
             className="btn btn-ghost font-mono text-xl"
           >
-            BookVault
+            Baitul Hikmah
           </a>
         </div>
         <div className="flex-none">
