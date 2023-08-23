@@ -50,12 +50,12 @@ const Navbar = () => {
             <Logo />
             <div>
               <ul className="flex items-center">
-                <li>
+                <li className="hidden lg:block">
                   <Button variant="link" asChild>
                     <Link to="/">Home</Link>
                   </Button>
                 </li>
-                <li>
+                <li className="hidden lg:block">
                   <Button variant="link" asChild>
                     <Link to="/all-books">All Books</Link>
                   </Button>
@@ -105,6 +105,7 @@ const Navbar = () => {
                       </div>
                     )}
                   </div>
+
                   {user.email ? (
                     <div className="dropdown dropdown-end">
                       <label
@@ -122,11 +123,10 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
                       >
-                        <li>
-                          <a className="justify-between">
-                            Profile
-                            <span className="badge">New</span>
-                          </a>
+                        <li className="block lg:hidden">
+                          <Button variant="link" asChild>
+                            <Link to="/all-books">All Books</Link>
+                          </Button>
                         </li>
                         <li>
                           <a>Settings</a>
