@@ -1,0 +1,15 @@
+._section {
+  @apply py-10;
+}
+
+.section_title {
+  @apply text-primary text-3xl text-center font-semibold mb-6;
+}
+
+.page_main {
+  @apply py-12;
+}
+
+.form_error {
+  @apply text-xs text-error mt-1;
+}
