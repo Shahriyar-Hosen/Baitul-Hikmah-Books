@@ -129,7 +129,7 @@ const Navbar = () => {
                           </Button>
                         </li>
                         <li>
-                          <a>Settings</a>
+                          <Link to="/add-book">Add Books</Link>
                         </li>
                         <li
                           onClick={handleLogOut}
