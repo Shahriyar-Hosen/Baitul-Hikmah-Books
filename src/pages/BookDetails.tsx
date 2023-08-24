@@ -13,7 +13,7 @@ const BookDetails = () => {
   const navigate = useNavigate();
   const { data: book } = useGetBookQuery(id!);
   const { user } = useAppSelector((state) => state.user);
-  const verifiedUser = user?.email && book?.addedBy === user?.email;
+  const verifiedUser = user?.email && book?.userEmail === user?.email;
 
   return (
     <div className="page_main">

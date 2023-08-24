@@ -25,8 +25,6 @@ const Navbar = () => {
   const { data: wishlists } = useGetWishlistsQuery(user.email!);
   const { data: readingLists } = useGetBooklistsQuery(user?.email!);
 
-  console.log({ wishlists, readingLists });
-
   const handleLogOut = () => {
     signOut(auth);
     dispatch(setUser(null));

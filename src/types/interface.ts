@@ -4,15 +4,17 @@ export interface IBook {
   author: string;
   genre: string;
   publicationDate: string;
-  addedBy: string | null;
-}
-
-export interface IWishlist {
-  email: string;
-  books: IBook[];
+  reviews: IReview[];
+  imageUrl: string;
+  userEmail: string;
 }
 
 export interface IReview {
   userEmail: string;
   review: string;
+}
+
+export interface IWishlist {
+  email: string;
+  books: IBook[];
 }

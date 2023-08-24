@@ -19,7 +19,7 @@ const AddBook = () => {
   } = useForm<IBook>();
 
   const onSubmit = (data: IBook) => {
-    const payload = { ...data, addedBy: user.email };
+    const payload = { ...data, userEmail: user.email };
     addBook(payload);
     reset();
   };

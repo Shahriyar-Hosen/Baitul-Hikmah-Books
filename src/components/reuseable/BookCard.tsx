@@ -67,7 +67,7 @@ export default function BookCard({ book }: { book: IBook }) {
   const readinglisted = readinglists?.readingPlan?.find(
     (readinglist: IBook) => readinglist?._id === book?._id
   );
-  const verifiedUser = user?.email && book?.addedBy === user?.email;
+  const verifiedUser = user?.email && book?.userEmail === user?.email;
 
   return (
     <>

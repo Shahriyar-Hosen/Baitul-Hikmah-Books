@@ -1,26 +1,26 @@
-import { useNavigate } from "react-router-dom";
-import { IBook } from "../../types/interface";
+import { toast } from "react-hot-toast";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaClipboardList } from "react-icons/fa6";
 import { HiOutlineClipboardList } from "react-icons/hi";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  useAddToBooklistMutation,
+  useGetBooklistsQuery,
+} from "../../redux/features/readinglist/readinglist";
 import {
   useAddToWishlistMutation,
   useGetWishlistsQuery,
   useRemoveFromWishlistsMutation,
 } from "../../redux/features/wishlist/wishlistApi";
-import { useAppSelector } from "../../redux/hook";
-import { useDispatch } from "react-redux";
 import {
   addToWishlist,
   removeFromWishlist,
 } from "../../redux/features/wishlist/wishlistSlice";
-import {
-  useAddToBooklistMutation,
-  useGetBooklistsQuery,
-} from "../../redux/features/readinglist/readinglist";
-import { toast } from "react-hot-toast";
+import { useAppSelector } from "../../redux/hook";
+import { IBook } from "../../types/interface";
 
-export default function BookCardWithImg({ book }: { book: IBook }) {
+const BookCardWithImg = ({ book }: { book: IBook }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useAppSelector((state) => state.user);
@@ -66,12 +66,9 @@ export default function BookCardWithImg({ book }: { book: IBook }) {
   );
 
   return (
-    <div className="card w-80 bg-base-200 shadow-xl hover:-translate-y-2 transition-transform">
+    <div className="card w-60 bg-base-200 shadow-xl hover:-translate-y-2 transition-transform">
       <figure>
-        <img
-          src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1198&q=80"
-          alt="Shoes"
-        />
+        <img src={book.imageUrl} className="w-full h-80" alt="Shoes" />
       </figure>
       <div className="card-body">
         {user?.email && (
@@ -111,4 +108,6 @@ export default function BookCardWithImg({ book }: { book: IBook }) {
       </div>
     </div>
   );
-}
+};
+
+export default BookCardWithImg;
