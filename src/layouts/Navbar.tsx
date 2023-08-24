@@ -23,14 +23,15 @@ const Navbar = () => {
   const path = location?.state?.path?.pathname || "/";
 
   const { data: wishlists } = useGetWishlistsQuery(user.email!);
+  const { data: readingLists } = useGetBooklistsQuery(user?.email!);
+
+  console.log({ wishlists, readingLists });
 
   const handleLogOut = () => {
     signOut(auth);
     dispatch(setUser(null));
     window.location.reload();
   };
-
-  const { data: readingLists } = useGetBooklistsQuery(user?.email!);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -84,7 +85,7 @@ const Navbar = () => {
                       <div className="indicator">
                         <AiFillHeart className="text-2xl text-error" />
                         <span className="badge bg-neutral badge-sm indicator-item">
-                          {wishlists?.total || 0}
+                          {wishlists?.books?.length || 0}
                         </span>
                       </div>
                     </label>
