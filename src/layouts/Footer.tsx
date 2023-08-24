@@ -1,13 +1,13 @@
 import { BsBookHalf } from "react-icons/bs";
 
 const Footer = () => (
-  <footer className="footer p-10 bg-base-200 text-base-content">
+  <footer className="footer p-10 bg-[#05051f] text-base-content">
     <div>
-      <BsBookHalf className="text-5xl" />
+      <BsBookHalf className="text-7xl" />
       <p>
-        <span className="text-2xl font-bold">BookVault</span>
+        <span className="text-2xl font-bold">Baitul Hikmah Books</span>
         <br />
-        Providing reliable book since 1992
+        Providing reliable book since 2001
       </p>
     </div>
     <div>
