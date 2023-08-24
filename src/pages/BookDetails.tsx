@@ -17,7 +17,7 @@ const BookDetails = () => {
 
   return (
     <div className="page_main">
-      <div className="flex flex-col lg:flex-row gap-6 mb-8">
+      <div className="flex flex-col lg:flex-row gap-6 mb-8 mt-16">
         <div className="">
           <img
             className="h-80 rounded-sm"
