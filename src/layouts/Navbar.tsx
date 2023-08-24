@@ -23,14 +23,15 @@ const Navbar = () => {
   const path = location?.state?.path?.pathname || "/";
 
   const { data: wishlists } = useGetWishlistsQuery(user.email!);
+  const { data: readingLists } = useGetBooklistsQuery(user?.email!);
+
+  console.log({ wishlists, readingLists });
 
   const handleLogOut = () => {
     signOut(auth);
     dispatch(setUser(null));
     window.location.reload();
   };
-
-  const { data: readingLists } = useGetBooklistsQuery(user?.email!);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -44,7 +45,7 @@ const Navbar = () => {
 
   return (
     <header className="w-full  h-16 fixed top backdrop-blur-lg z-10 bg-[#02004867]">
-      <nav className="w-[95%] xl:w-full max-w-7xl mx-auto">
+      <nav className="w-[95%] xl:w-full container mx-auto">
         <div className="h-full w-full bg-transparent">
           <div className="flex items-center justify-between w-full h-full mx-auto ">
             <Logo />
@@ -84,7 +85,7 @@ const Navbar = () => {
                       <div className="indicator">
                         <AiFillHeart className="text-2xl text-error" />
                         <span className="badge bg-neutral badge-sm indicator-item">
-                          {wishlists?.total || 0}
+                          {wishlists?.books?.length || 0}
                         </span>
                       </div>
                     </label>

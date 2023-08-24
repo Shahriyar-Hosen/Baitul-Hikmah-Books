@@ -1,16 +1,16 @@
+import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import {
   useGetBooklistsQuery,
   useUpdateBooklistsMutation,
 } from "../redux/features/readinglist/readinglist";
-import { toast } from "react-hot-toast";
 import { IBook } from "../types/interface";
 
 interface IReadingList extends IBook {
   completedReading: boolean;
 }
 
-export default function ReadlingList() {
+const ReadlingList = () => {
   const { email } = useParams();
   const [updateReadingList] = useUpdateBooklistsMutation();
 
@@ -25,7 +25,7 @@ export default function ReadlingList() {
 
   return (
     <div className="min-h-[80vh]">
-      <div className=" mt-14 mb-8">
+      <div className="mb-8 pt-28 ">
         <h3 className="section_title">Reading List</h3>
         <div className="overflow-x-auto">
           <table className="table border-2 border-neutral">
@@ -69,4 +69,6 @@ export default function ReadlingList() {
       </div>
     </div>
   );
-}
+};
+
+export default ReadlingList;

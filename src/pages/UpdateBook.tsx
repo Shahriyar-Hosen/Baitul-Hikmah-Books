@@ -1,15 +1,15 @@
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import PreviousBtn from "../components/reuseable/PreviousBtn";
 import {
   useGetBookQuery,
   useUpdateBookMutation,
 } from "../redux/features/book/bookApi";
-import { useForm } from "react-hook-form";
 import { IBook } from "../types/interface";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
 
-export default function UpdateBook() {
+const UpdateBook = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: book } = useGetBookQuery(id!);
@@ -44,7 +44,7 @@ export default function UpdateBook() {
 
   return (
     <div className="page_main">
-      <h2 className="section_title">Update Book</h2>
+      <h2 className="section_title mt-16">Update Book</h2>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200 mx-auto">
         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
@@ -115,4 +115,6 @@ export default function UpdateBook() {
       <PreviousBtn />
     </div>
   );
-}
+};
+
+export default UpdateBook;

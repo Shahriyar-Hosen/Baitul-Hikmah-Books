@@ -1,12 +1,12 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import PreviousBtn from "../components/reuseable/PreviousBtn";
+import { usePostBookMutation } from "../redux/features/book/bookApi";
 import { useAppSelector } from "../redux/hook";
 import { IBook } from "../types/interface";
-import { usePostBookMutation } from "../redux/features/book/bookApi";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
 
-export default function AddBook() {
+const AddBook = () => {
   const [addBook, { isSuccess, isError /* isLoading */ }] =
     usePostBookMutation();
   const { user } = useAppSelector((state) => state.user);
@@ -32,7 +32,7 @@ export default function AddBook() {
 
   return (
     <div className="page_main">
-      <h2 className="section_title">Add New Book</h2>
+      <h2 className="section_title mt-16">Add New Book</h2>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200 mx-auto">
         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
@@ -108,4 +108,5 @@ export default function AddBook() {
       <PreviousBtn />
     </div>
   );
-}
+};
+export default AddBook;

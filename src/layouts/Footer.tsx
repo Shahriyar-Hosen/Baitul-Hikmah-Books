@@ -1,14 +1,14 @@
 import { BsBookHalf } from "react-icons/bs";
 
-export default function Footer() {
-  return (
-    <footer className="footer p-10 bg-base-200 text-base-content">
+const Footer = () => (
+  <div className="bg-[#05051f]">
+    <footer className="footer container mx-auto p-10 text-base-content">
       <div>
-        <BsBookHalf className="text-5xl"/>
+        <BsBookHalf className="text-7xl" />
         <p>
-          <span className="text-2xl font-bold">BookVault</span>
+          <span className="text-2xl font-bold">Baitul Hikmah Books</span>
           <br />
-          Providing reliable book since 1992
+          Providing reliable book since 2001
         </p>
       </div>
       <div>
@@ -32,5 +32,7 @@ export default function Footer() {
         <a className="link link-hover">Cookie policy</a>
       </div>
     </footer>
-  );
-}
+  </div>
+);
+
+export default Footer;

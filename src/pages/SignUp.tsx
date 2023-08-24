@@ -1,12 +1,12 @@
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SignUpForm from "../components/ui/SignUpForm";
-import { useAppDispatch, useAppSelector } from "../redux/hook";
-import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { setUser } from "../redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 
-export default function SignUp() {
+const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ export default function SignUp() {
 
   return (
     <div className="flex items-center justify-center h-screen my-8 md:my-0">
-      <div className="card lg:card-side bg-base-200 shadow-xl">
+      <div className="card lg:card-side bg-base-200 shadow-xl mt-16">
         <figure>
           <img
             className="hidden lg:block w-full h-full object-cover"
@@ -53,4 +53,6 @@ export default function SignUp() {
       </div>
     </div>
   );
-}
+};
+
+export default SignUp;
