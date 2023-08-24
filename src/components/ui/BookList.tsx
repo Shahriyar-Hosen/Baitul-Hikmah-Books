@@ -14,9 +14,8 @@ const BookList = () => {
 
   return (
     <div className="_section">
-      {" "}
       <div className="flex justify-between items-center h-[calc(100vh-80px)] mx-auto px-10 xl:px-20">
-        <div className="">
+        <div>
           <h1 className="text-6xl font-black text-primary mb-2">
             Read Your <br /> Favorite Books
           </h1>
@@ -34,9 +33,10 @@ const BookList = () => {
           <Button className="mt-5">Learn more</Button>
         </div>
         <div className="w-6/12">
-          <img className="" src={banner} alt="banner" />
+          <img src={banner} alt="banner" />
         </div>
       </div>
+
       <h2 className="section_title">Recent Books</h2>
       <div className="flex flex-wrap gap-5 items-center justify-center">
         {data?.data?.slice(0, 10)?.map((book: IBook) => (
