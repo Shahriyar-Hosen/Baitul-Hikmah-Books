@@ -1,14 +1,14 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BookCard from "../components/reuseable/BookCard";
 import { useGetAllBooksQuery } from "../redux/features/book/bookApi";
-import { IBook } from "../types/interface";
-import { useDispatch } from "react-redux";
 import {
   clearFilter,
   filter,
   search,
 } from "../redux/features/search/searchSlice";
 import { useAppSelector } from "../redux/hook";
+import { IBook } from "../types/interface";
 
 export default function AllBooks() {
   // const [searchFilter, setSearchFilter] = useState({
@@ -36,7 +36,7 @@ export default function AllBooks() {
       return book;
     });
 
-/*   const onSearch = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  /*   const onSearch = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchFilter((prevFilter) => ({
       ...prevFilter,
       keyword: e.target.value,
@@ -50,8 +50,8 @@ export default function AllBooks() {
   }; */
 
   return (
-    <div className="page_main">
-      <h2 className="section_title">All Books</h2>
+    <section className="page_main ">
+      <h2 className="section_title mt-16">All Books</h2>
       <div className="text-center flex flex-col items-center justify-center md:justify-between lg:flex-row">
         <div className="flex gap-3 justify-center items-center">
           <input
@@ -94,6 +94,6 @@ export default function AllBooks() {
           <BookCard key={book._id} book={book} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
