@@ -1,12 +1,12 @@
 import { useState } from "react";
+import { FaDeleteLeft, FaPencil } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
+import DeleteModal from "../components/ui/DeleteModal";
 import Reviews from "../components/ui/Reviews";
 import { useGetBookQuery } from "../redux/features/book/bookApi";
-import { FaDeleteLeft, FaPencil } from "react-icons/fa6";
 import { useAppSelector } from "../redux/hook";
-import DeleteModal from "../components/ui/DeleteModal";
 
-export default function BookDetails() {
+const BookDetails = () => {
   const [showModal, setShowModal] = useState(false);
 
   const { id } = useParams();
@@ -63,4 +63,6 @@ export default function BookDetails() {
       {showModal && <DeleteModal book={book} setShowModal={setShowModal} />}
     </div>
   );
-}
+};
+
+export default BookDetails;
