@@ -21,8 +21,6 @@ const AddBook = () => {
   const onSubmit = (data: IBook) => {
     const payload = { ...data, userEmail: user.email };
     addBook(payload);
-    console.log(payload);
-
     reset();
   };
 
