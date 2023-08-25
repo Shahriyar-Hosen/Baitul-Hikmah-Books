@@ -19,7 +19,7 @@ const AddBook = () => {
   } = useForm<IBook>();
 
   const onSubmit = (data: IBook) => {
-    const payload = { ...data, addedBy: user.email };
+    const payload = { ...data, userEmail: user.email };
     addBook(payload);
     reset();
   };
@@ -72,6 +72,7 @@ const AddBook = () => {
               {...register("genre", { required: "Genre is required" })}
             >
               <option selected>Self-Help</option>
+              <option>Fantasy</option>
               <option>Fiction</option>
               <option>Non-Fiction</option>
               <option>Religion</option>
@@ -98,6 +99,20 @@ const AddBook = () => {
             />
             {errors.publicationDate && (
               <p className="form_error">{errors.publicationDate.message}</p>
+            )}
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Image Url</span>
+            </label>
+            <input
+              type="url"
+              placeholder="Caver Image"
+              className="input input-bordered"
+              {...register("imageUrl", { required: "Image Url is required" })}
+            />
+            {errors.imageUrl && (
+              <p className="form_error">{errors.imageUrl.message}</p>
             )}
           </div>
           <div className="form-control mt-6">

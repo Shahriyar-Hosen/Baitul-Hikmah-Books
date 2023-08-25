@@ -1,28 +1,28 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaClipboardList, FaDeleteLeft, FaPencil } from "react-icons/fa6";
-import { IBook } from "../../types/interface";
-import { useAppSelector } from "../../redux/hook";
-import DeleteModal from "../ui/DeleteModal";
+import { HiOutlineClipboardList } from "react-icons/hi";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
-  addToWishlist,
-  removeFromWishlist,
-} from "../../redux/features/wishlist/wishlistSlice";
+  useAddToBooklistMutation,
+  useGetBooklistsQuery,
+} from "../../redux/features/readinglist/readinglist";
 import {
   useAddToWishlistMutation,
   useGetWishlistsQuery,
   useRemoveFromWishlistsMutation,
 } from "../../redux/features/wishlist/wishlistApi";
 import {
-  useAddToBooklistMutation,
-  useGetBooklistsQuery,
-} from "../../redux/features/readinglist/readinglist";
-import { useDispatch } from "react-redux";
-import { toast } from "react-hot-toast";
-import { HiOutlineClipboardList } from "react-icons/hi";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+  addToWishlist,
+  removeFromWishlist,
+} from "../../redux/features/wishlist/wishlistSlice";
+import { useAppSelector } from "../../redux/hook";
+import { IBook } from "../../types/interface";
+import DeleteModal from "../ui/DeleteModal";
 
-export default function BookCard({ book }: { book: IBook }) {
+const BookCard = ({ book }: { book: IBook }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
@@ -67,7 +67,7 @@ export default function BookCard({ book }: { book: IBook }) {
   const readinglisted = readinglists?.readingPlan?.find(
     (readinglist: IBook) => readinglist?._id === book?._id
   );
-  const verifiedUser = user?.email && book?.addedBy === user?.email;
+  const verifiedUser = user?.email && book?.userEmail === user?.email;
 
   return (
     <>
@@ -132,4 +132,5 @@ export default function BookCard({ book }: { book: IBook }) {
       {showModal && <DeleteModal book={book} setShowModal={setShowModal} />}
     </>
   );
-}
+};
+export default BookCard;
