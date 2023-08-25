@@ -66,13 +66,36 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
   );
 
   return (
-    <div className="card w-60 bg-base-200 shadow-xl hover:-translate-y-2 transition-transform">
+    <div
+      onClick={() => navigate(`/book-details/${book._id}`)}
+      className="card w-60 bg-base-200 shadow-xl hover:-translate-y-2 transition-transform cursor-pointer"
+    >
       <figure>
-        <img src={book.imageUrl} className="w-full h-80" alt="Shoes" />
+        <img src={book.imageUrl} className="w-full h-72" alt="Shoes" />
       </figure>
-      <div className="card-body">
+
+      <div className="flex flex-col justify-start items-start gap-2 px-2.5 pt-3">
+        <h2 className="text-lg font-semibold" title={book.title}>
+          {book.title.length > 20
+            ? book.title.slice(0, 21) + "..."
+            : book.title}
+        </h2>
+
+        <span className="badge badge-info text-sm">{book.author}</span>
+
+        <p className="font-light text-sm">
+          <span className="font-semibold">Published:</span>{" "}
+          {book.publicationDate}
+        </p>
+
+        <div className="card-actions text-sm">
+          <div className="badge badge-sm badge-outline text-sm p-2">
+            {book.genre}
+          </div>
+        </div>
+
         {user?.email && (
-          <div className=" flex justify-end">
+          <div className="w-full flex items-center justify-end px-2 pb-1">
             <button className="btn btn-circle text-info text-2xl">
               {readinglisted ? (
                 <FaClipboardList onClick={onUpdateReadinglist} />
@@ -89,22 +112,6 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
             </button>
           </div>
         )}
-        <h2 className="card-title">{book.title.slice(0, 23)}</h2>
-        <span className="badge badge-secondary">{book.author}</span>
-
-        <p className="font-light">
-          <span className="font-semibold">Published:</span>{" "}
-          {book.publicationDate}
-        </p>
-        <div className="card-actions">
-          <div className="badge badge-sm badge-outline">{book.genre}</div>
-        </div>
-        <button
-          onClick={() => navigate(`/book-details/${book._id}`)}
-          className="btn btn-outline btn-primary"
-        >
-          See Details
-        </button>
       </div>
     </div>
   );

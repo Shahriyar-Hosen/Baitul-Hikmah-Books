@@ -12,8 +12,6 @@ const BookList = () => {
 
   if (isLoading) return <Loading />;
 
-  console.log(data?.data);
-
   return (
     <div className="_section">
       <div className="flex justify-between items-center h-[calc(100vh-80px)] mx-auto px-10 xl:px-20">
