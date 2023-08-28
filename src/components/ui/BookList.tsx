@@ -7,9 +7,13 @@ import Loading from "../reuseable/Loading";
 import { Button } from "./button";
 
 const BookList = () => {
-  const { data, isLoading } = useGetAllBooksQuery(undefined);
+  const { data, isLoading } = useGetAllBooksQuery({
+    sortBy: "createdAt",
+    limit: 10,
+  });
   const navigate = useNavigate();
 
+  const books = data?.data;
   if (isLoading) return <Loading />;
 
   return (
@@ -39,8 +43,8 @@ const BookList = () => {
 
       <h2 className="section_title">Recent Books</h2>
       <div className="flex flex-wrap gap-5 items-center justify-center">
-        {data?.data?.slice(0, 10)?.map((book: IBook) => (
-          <BookCardWithImg book={book} />
+        {books?.map((book: IBook, i: number) => (
+          <BookCardWithImg book={book} key={i} />
         ))}
       </div>
       <div className="text-center mt-5">

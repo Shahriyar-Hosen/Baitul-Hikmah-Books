@@ -76,7 +76,7 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
 
       <div className="flex flex-col justify-start items-start gap-2 px-2.5 pt-3">
         <h2 className="text-lg font-semibold" title={book.title}>
-          {book.title.length > 20
+          {book?.title?.length > 20
             ? book.title.slice(0, 21) + "..."
             : book.title}
         </h2>

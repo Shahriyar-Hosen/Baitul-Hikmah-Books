@@ -1,13 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IGenre } from "../../../types/interface";
 
 interface SearchState {
   keyword: string;
-  filterOptions: string[];
+  filterOptions: {
+    genre: IGenre | "";
+  };
 }
 
 const initialState: SearchState = {
   keyword: "",
-  filterOptions: [],
+  filterOptions: {
+    genre: "",
+  },
 };
 
 export const searchSlice = createSlice({
@@ -18,11 +23,11 @@ export const searchSlice = createSlice({
       state.keyword = action.payload;
     },
     filter: (state, action) => {
-      state.filterOptions = action.payload;
+      state.filterOptions.genre = action.payload;
     },
     clearFilter: (state) => {
-      state.keyword = ""
-      state.filterOptions = []
+      state.keyword = "";
+      state.filterOptions.genre = "";
     },
   },
 });
