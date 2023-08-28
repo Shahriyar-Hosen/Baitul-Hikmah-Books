@@ -11,43 +11,17 @@ import { useAppSelector } from "../redux/hook";
 import { IBook } from "../types/interface";
 
 export default function AllBooks() {
-  // const [searchFilter, setSearchFilter] = useState({
-  //   keyword: "",
-  //   genre: "",
-  // });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { keyword, filterOptions } = useAppSelector((state) => state.search);
-  const { data } = useGetAllBooksQuery(undefined);
+  const { data } = useGetAllBooksQuery({
+    page: 1,
+    limit: 15,
+    sortBy: "genre",
+    genre: filterOptions.genre,
+    searchTerm: keyword.toLocaleLowerCase(),
+  });
   const books = data?.data;
-
-  let bookContent: IBook[] = books;
-  bookContent = books
-    ?.filter((book: IBook) => {
-      if (keyword) {
-        return book.title
-          .toLocaleLowerCase()
-          .includes(keyword.toLocaleLowerCase());
-      }
-      return book;
-    })
-    .filter((book: IBook) => {
-      if (filterOptions.length) return filterOptions.includes(book.genre);
-      return book;
-    });
-
-  /*   const onSearch = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchFilter((prevFilter) => ({
-      ...prevFilter,
-      keyword: e.target.value,
-    }));
-    dispatch(search(searchFilter.keyword));
-  };
-
-  const onFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchFilter((prevFilter) => ({ ...prevFilter, genre: e.target.value }));
-    dispatch(filter(searchFilter.genre));
-  }; */
 
   return (
     <section className="page_main ">
@@ -90,7 +64,7 @@ export default function AllBooks() {
         </button>
       </div>
       <div className="flex flex-wrap gap-5 items-center justify-center">
-        {bookContent?.map((book: IBook) => (
+        {books?.map((book: IBook) => (
           <BookCardWithImg key={book._id} book={book} />
         ))}
       </div>

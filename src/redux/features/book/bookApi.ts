@@ -1,10 +1,21 @@
+import { IFilterOptions } from "../../../types/interface";
 import { api } from "../../api/apiSlice";
 
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllBooks: builder.query({
-      query: () =>
-        "books?page=1&limit=10&sortBy=publicationDate&sortOrder=-1&searchTerm=",
+      query: ({
+        page = 1,
+        limit = 10,
+        sortBy = "createdAt",
+        sortOrder = -1,
+        searchTerm = "",
+        genre,
+        publicationDate,
+      }: IFilterOptions) =>
+        `books?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&searchTerm=${searchTerm} ${
+          genre ? `&genre=${genre}` : ""
+        }`,
       providesTags: ["Books"],
     }),
     getBook: builder.query({
