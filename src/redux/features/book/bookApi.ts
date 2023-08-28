@@ -13,9 +13,9 @@ const bookApi = api.injectEndpoints({
         genre,
         publicationDate,
       }: IFilterOptions) =>
-        `books?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&searchTerm=${searchTerm} ${
+        `books?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&searchTerm=${searchTerm}${
           genre ? `&genre=${genre}` : ""
-        }`,
+        }${publicationDate ? `&publicationDate=${publicationDate}` : ""}`,
       providesTags: ["Books"],
     }),
     getBook: builder.query({
