@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import BookCard from "../components/reuseable/BookCard";
+import BookCardWithImg from "../components/reuseable/BookCardWithImg";
 import { useGetAllBooksQuery } from "../redux/features/book/bookApi";
 import {
   clearFilter,
@@ -17,8 +17,8 @@ export default function AllBooks() {
   // });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { data } = useGetAllBooksQuery(undefined);
   const { keyword, filterOptions } = useAppSelector((state) => state.search);
+  const { data } = useGetAllBooksQuery(undefined);
   const books = data?.data;
 
   let bookContent: IBook[] = books;
@@ -91,7 +91,7 @@ export default function AllBooks() {
       </div>
       <div className="flex flex-wrap gap-5 items-center justify-center">
         {bookContent?.map((book: IBook) => (
-          <BookCard key={book._id} book={book} />
+          <BookCardWithImg key={book._id} book={book} />
         ))}
       </div>
     </section>
