@@ -1,3 +1,4 @@
+import { FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BookCardWithImg from "../components/reuseable/BookCardWithImg";
@@ -21,7 +22,26 @@ export default function AllBooks() {
     genre: filterOptions.genre,
     searchTerm: keyword.toLocaleLowerCase(),
   });
+
   const books = data?.data;
+
+  const filterBySearch = (value: string) => {
+    dispatch(search(value));
+  };
+
+  const debounce = (fn: (value: string) => void, delay: number) => {
+    let timeoutId: NodeJS.Timeout | number | undefined;
+
+    return (e: FormEvent) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      timeoutId = setTimeout(() => {
+        fn((e.target as HTMLInputElement).value);
+      }, delay);
+    };
+  };
 
   return (
     <section className="page_main ">
@@ -31,7 +51,7 @@ export default function AllBooks() {
           <input
             type="text"
             placeholder="Search you book....... 📖"
-            onChange={(e) => dispatch(search(e.target.value))}
+            onChange={debounce((value) => filterBySearch(value), 500)}
             className="input input-bordered input-primary w-[500px] max-w-xs"
           />
           <select
