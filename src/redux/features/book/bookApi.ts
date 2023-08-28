@@ -18,10 +18,12 @@ const bookApi = api.injectEndpoints({
         }${publicationDate ? `&publicationDate=${publicationDate}` : ""}`,
       providesTags: ["Books"],
     }),
+
     getBook: builder.query({
       query: (id: string) => `book/${id}`,
       providesTags: ["Book"],
     }),
+
     postBook: builder.mutation({
       query: (data) => ({
         url: "/book",
@@ -30,6 +32,7 @@ const bookApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Books"],
     }),
+
     updateBook: builder.mutation({
       query: ({ data, id }) => ({
         url: `/book/${id}`,
@@ -38,6 +41,7 @@ const bookApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Books", "Book"],
     }),
+
     deleteBook: builder.mutation({
       query: (id: string) => ({
         url: `/book/${id}`,
