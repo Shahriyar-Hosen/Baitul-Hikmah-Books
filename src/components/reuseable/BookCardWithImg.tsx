@@ -88,14 +88,14 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
           {book.publicationDate}
         </p>
 
-        <div className="card-actions text-sm">
+        <div className="card-actions text-sm mb-2.5">
           <div className="badge badge-sm badge-outline text-sm p-2">
             {book.genre}
           </div>
         </div>
 
         {user?.email && (
-          <div className="w-full flex items-center justify-end px-2 pb-1">
+          <div className="w-full flex items-center justify-end px-2 pb-1 -mt-2.5">
             <button className="btn btn-circle text-info text-2xl">
               {readinglisted ? (
                 <FaClipboardList onClick={onUpdateReadinglist} />
