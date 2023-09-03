@@ -30,14 +30,14 @@ const BookDetails = () => {
   return (
     <div className="page_main">
       <div className="flex flex-col lg:flex-row gap-6 mb-8 mt-16">
-        <div className="">
-          <img className="h-80 rounded-sm" src={imageUrl} alt="" />
+        <div className="w-96">
+          <img className="w-full rounded-sm" src={imageUrl} alt="" />
         </div>
-        <div>
+        <div className="flex flex-col gap-5">
           <h4 className="text-xl text-secondary font-semibold">
             {title}
             <span className="text-sm text-slate-500 font-medium">
-              by {author}
+              &nbsp;by {author}
             </span>
           </h4>
           <span className="badge badge-info">{genre}</span>
@@ -64,6 +64,12 @@ const BookDetails = () => {
               </button>
             </div>
           )}
+          <p className=" w-full max-w-[500px]">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
+            cupiditate, ut rem aspernatur earum, reprehenderit praesentium vero
+            repellat eum voluptatem quis quae minus laboriosam molestias! Eaque
+            officiis nam inventore veritatis!
+          </p>
         </div>
       </div>
 
