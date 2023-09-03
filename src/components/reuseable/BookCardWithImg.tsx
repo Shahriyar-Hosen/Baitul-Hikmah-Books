@@ -66,15 +66,14 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
   );
 
   return (
-    <div
-      onClick={() => navigate(`/book-details/${book._id}`)}
-      className="card w-60 bg-base-200 shadow-xl hover:-translate-y-2 transition-transform cursor-pointer"
-    >
-      <figure>
+    <div className="card w-60 bg-base-200 shadow-xl hover:-translate-y-2 transition-transform cursor-pointer">
+      <figure onClick={() => navigate(`/book-details/${book._id}`)}>
         <img src={book.imageUrl} className="w-full h-72" alt="Shoes" />
       </figure>
-
-      <div className="flex flex-col justify-start items-start gap-2 px-2.5 pt-3">
+      <div
+        onClick={() => navigate(`/book-details/${book._id}`)}
+        className="flex flex-col justify-start items-start gap-2 px-2.5 pt-3"
+      >
         <h2 className="text-lg font-semibold" title={book.title}>
           {book?.title?.length > 20
             ? book.title.slice(0, 21) + "..."
@@ -93,9 +92,15 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
             {book.genre}
           </div>
         </div>
+      </div>
 
-        {user?.email && (
-          <div className="w-full flex items-center justify-end px-2 pb-1 -mt-2.5">
+      {user?.email && (
+        <div className="w-full flex items-center justify-between px-2 pb-1 -mt-6">
+          <div
+            className="w-full"
+            onClick={() => navigate(`/book-details/${book._id}`)}
+          />
+          <div className="flex items-center justify-end">
             <button className="btn btn-circle text-info text-2xl">
               {readinglisted ? (
                 <FaClipboardList onClick={onUpdateReadinglist} />
@@ -111,8 +116,8 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
               )}
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
