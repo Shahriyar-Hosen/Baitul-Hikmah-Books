@@ -15,16 +15,7 @@ const UpdateBook = () => {
   const { data: book } = useGetBookQuery(id!);
   const [updateBook, { isError, isSuccess }] = useUpdateBookMutation();
 
-  const {
-    _id,
-    author,
-    genre,
-    imageUrl,
-    publicationDate,
-    reviews,
-    title,
-    userEmail,
-  }: IBook = book || {};
+  const { author, genre, imageUrl, publicationDate, title }: IBook = book || {};
 
   const {
     register,
