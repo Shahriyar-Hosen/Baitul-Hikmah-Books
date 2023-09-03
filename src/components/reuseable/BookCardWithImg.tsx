@@ -44,17 +44,17 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
     toast.success(`Successfully, ${book.title} removed from wishlist`);
   };
 
-  const wishlisted = wishlists?.books?.find(
+  const wishListed = wishlists?.books?.find(
     (wishlist: IBook) => wishlist?._id === book?._id
   );
 
-  const onAddReadinglist = () => {
+  const onAddReadingList = () => {
     const payload = { userEmail: user.email, book };
     addToReadingList(payload);
     toast.success(`Successfully, ${book.title} added to booklists`);
   };
 
-  const onUpdateReadinglist = () => {
+  const onUpdateReadingList = () => {
     toast("Already added to wishlist!", {
       icon: "😀",
       style: { background: "#3c3c3c", color: "white" },
@@ -103,13 +103,13 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
           <div className="flex items-center justify-end">
             <button className="btn btn-circle text-info text-2xl">
               {readinglisted ? (
-                <FaClipboardList onClick={onUpdateReadinglist} />
+                <FaClipboardList onClick={onUpdateReadingList} />
               ) : (
-                <HiOutlineClipboardList onClick={onAddReadinglist} />
+                <HiOutlineClipboardList onClick={onAddReadingList} />
               )}
             </button>
             <button className="btn btn-circle text-error text-2xl">
-              {wishlisted ? (
+              {wishListed ? (
                 <AiFillHeart onClick={onRemoveFromWishlist} />
               ) : (
                 <AiOutlineHeart onClick={onAddWishlist} />
