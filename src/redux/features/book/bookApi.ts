@@ -8,7 +8,7 @@ const bookApi = api.injectEndpoints({
         page = 1,
         limit = 10,
         sortBy = "createdAt",
-        sortOrder = -1,
+        sortOrder = 1,
         searchTerm = "",
         genre,
         publicationDate,

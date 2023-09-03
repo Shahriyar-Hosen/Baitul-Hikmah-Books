@@ -30,11 +30,12 @@ export interface IWishlist {
   books: IBook[];
 }
 export type ISortBy = "genre" | "publicationDate" | "createdAt";
+export type ISortOrder = 1 | -1;
 export interface IFilterOptions {
   page?: number;
   limit?: number;
   sortBy?: ISortBy;
-  sortOrder?: 1 | -1;
+  sortOrder?: ISortOrder;
   searchTerm?: string;
   genre?: IGenre | "";
   publicationDate?: string;

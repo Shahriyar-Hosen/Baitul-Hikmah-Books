@@ -9,6 +9,7 @@ import { Button } from "./button";
 const BookList = () => {
   const { data, isLoading } = useGetAllBooksQuery({
     sortBy: "createdAt",
+    sortOrder: -1,
     limit: 10,
   });
   const navigate = useNavigate();

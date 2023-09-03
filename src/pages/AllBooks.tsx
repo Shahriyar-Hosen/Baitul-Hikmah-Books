@@ -9,9 +9,11 @@ import {
   clearFilter,
   filter,
   search,
+  sortBy,
+  sortOrder,
 } from "../redux/features/search/searchSlice";
 import { useAppSelector } from "../redux/hook";
-import { IBook, ISortBy } from "../types/interface";
+import { IBook, ISortBy, ISortOrder } from "../types/interface";
 
 const AllBooks = () => {
   const navigate = useNavigate();
@@ -19,8 +21,9 @@ const AllBooks = () => {
   const { keyword, filterOptions } = useAppSelector((state) => state.search);
   const { data } = useGetAllBooksQuery({
     page: 1,
-    limit: 15,
-    sortBy: "genre",
+    limit: 50,
+    sortBy: filterOptions.sortBy,
+    sortOrder: filterOptions.sortOrder,
     genre: filterOptions.genre,
     searchTerm: keyword.toLocaleLowerCase(),
   });
@@ -46,17 +49,23 @@ const AllBooks = () => {
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const [sortBy, setSortBy] = useState<ISortBy>("createdAt");
+  const [sortByData, setSortByData] = useState<ISortBy>("createdAt");
+  const [sortOrderData, setSortOrderData] = useState<ISortOrder>(-1);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const sortData = (value: ISortBy) => {
-    setSortBy(value);
+  const sortFn = (value: ISortBy) => {
+    dispatch(sortBy(value));
+    setSortByData(value);
     setIsOpen(false);
   };
-  console.log(sortBy);
+
+  const sortOrderFn = (value: ISortOrder) => {
+    dispatch(sortOrder(value));
+    setSortOrderData(value);
+  };
 
   return (
     <section className="page_main ">
@@ -111,10 +120,10 @@ const AllBooks = () => {
                   <p
                     className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
                     role="menuitem"
-                    onClick={() => sortData("createdAt")}
+                    onClick={() => sortFn("createdAt")}
                   >
                     <span className="text-lg mr-1">
-                      {sortBy === "createdAt" ? (
+                      {sortByData === "createdAt" ? (
                         <FcCheckmark />
                       ) : (
                         <div className="w-4" />
@@ -123,12 +132,12 @@ const AllBooks = () => {
                     Date
                   </p>
                   <p
-                    onClick={() => sortData("genre")}
+                    onClick={() => sortFn("genre")}
                     className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
                     role="menuitem"
                   >
                     <span className="text-lg mr-1">
-                      {sortBy === "genre" ? (
+                      {sortByData === "genre" ? (
                         <FcCheckmark />
                       ) : (
                         <div className="w-4" />
@@ -137,18 +146,49 @@ const AllBooks = () => {
                     Genre
                   </p>
                   <p
-                    onClick={() => sortData("publicationDate")}
+                    onClick={() => sortFn("publicationDate")}
                     className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
                     role="menuitem"
                   >
                     <span className="text-lg mr-1">
-                      {sortBy === "publicationDate" ? (
+                      {sortByData === "publicationDate" ? (
                         <FcCheckmark />
                       ) : (
                         <div className="w-4" />
                       )}
                     </span>
-                    publicationDate
+                    Publication Date
+                  </p>
+
+                  <hr />
+
+                  <p
+                    onClick={() => sortOrderFn(-1)}
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    role="menuitem"
+                  >
+                    <span className="text-lg mr-1">
+                      {sortOrderData === -1 ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
+                    Ascending
+                  </p>
+                  <p
+                    onClick={() => sortOrderFn(1)}
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    role="menuitem"
+                  >
+                    <span className="text-lg mr-1">
+                      {sortOrderData === 1 ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
+                    Descending
                   </p>
                 </div>
               </div>
