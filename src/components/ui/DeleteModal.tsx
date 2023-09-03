@@ -15,15 +15,16 @@ const DeleteModal = ({ book, setShowModal }: IDeleteModalProps) => {
   if (isSuccess) {
     toast.success(`Successfully, ${book.title} delete to book list❗`);
     navigate("/all-books");
+    setShowModal(false);
   }
   if (isError) {
     toast.error(`Failed❗, ${book.title} was not removed from the book list❗
     error: ${error}`);
+    setShowModal(false);
   }
 
   const onDeleteBook = () => {
     deleteBook(book._id);
-    setShowModal(false);
   };
 
   return (
