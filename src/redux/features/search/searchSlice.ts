@@ -38,10 +38,13 @@ export const searchSlice = createSlice({
     clearFilter: (state) => {
       state.keyword = "";
       state.filterOptions.genre = "";
+      state.filterOptions.sortBy = "createdAt";
+      state.filterOptions.sortOrder = -1;
     },
   },
 });
 
 export const { search, filter, clearFilter, sortBy, sortOrder } =
   searchSlice.actions;
+
 export default searchSlice.reducer;
