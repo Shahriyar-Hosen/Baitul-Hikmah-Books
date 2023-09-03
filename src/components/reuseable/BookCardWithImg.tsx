@@ -51,7 +51,7 @@ const BookCardWithImg = ({ book }: { book: IBook }) => {
   const onAddReadinglist = () => {
     const payload = { userEmail: user.email, book };
     addToReadingList(payload);
-    toast.success(`Successfully, ${book.title} added to booklist`);
+    toast.success(`Successfully, ${book.title} added to booklists`);
   };
 
   const onUpdateReadinglist = () => {
