@@ -1,4 +1,6 @@
 import { FormEvent, useState } from "react";
+import { BsChevronExpand } from "react-icons/bs";
+import { FcCheckmark } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BookCardWithImg from "../components/reuseable/BookCardWithImg";
@@ -87,27 +89,15 @@ const AllBooks = () => {
             <button
               onClick={toggleDropdown}
               type="button"
-              className="inline-flex justify-center w-full px-5 py-3 text-sm font-medium text-white bg-[#0f1729] border border-white border-opacity-60 rounded-md shadow-sm focus:outline-none"
+              className="inline-flex justify-center w-full p-3 text-sm font-medium text-white bg-[#0f1729] border border-white border-opacity-60 rounded-md shadow-sm focus:outline-none"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"
             >
               Sort&nbsp;By
-              <svg
-                className={`-mr-1 ml-2 h-5 w-5 transition-all duration-300 ${
-                  isOpen && "-rotate-180"
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <span className="text-white text-lg ml-2.5">
+                <BsChevronExpand />
+              </span>
             </button>
 
             {isOpen && (
@@ -117,27 +107,47 @@ const AllBooks = () => {
                 aria-orientation="vertical"
                 aria-labelledby="options-menu"
               >
-                {/* Dropdown content */}
                 <div className="py-1" role="none">
                   <p
-                    className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
                     role="menuitem"
                     onClick={() => sortData("createdAt")}
                   >
+                    <span className="text-lg mr-1">
+                      {sortBy === "createdAt" ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
                     Date
                   </p>
                   <p
                     onClick={() => sortData("genre")}
-                    className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
                     role="menuitem"
                   >
-                    genre
+                    <span className="text-lg mr-1">
+                      {sortBy === "genre" ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
+                    Genre
                   </p>
                   <p
                     onClick={() => sortData("publicationDate")}
-                    className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
                     role="menuitem"
                   >
+                    <span className="text-lg mr-1">
+                      {sortBy === "publicationDate" ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
                     publicationDate
                   </p>
                 </div>
