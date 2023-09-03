@@ -7,8 +7,7 @@ import { useAppSelector } from "../redux/hook";
 import { IBook } from "../types/interface";
 
 const AddBook = () => {
-  const [addBook, { isSuccess, isError /* isLoading */ }] =
-    usePostBookMutation();
+  const [addBook, { isSuccess, isError }] = usePostBookMutation();
   const { user } = useAppSelector((state) => state.user);
 
   const {
@@ -41,7 +40,7 @@ const AddBook = () => {
             </label>
             <input
               type="text"
-              placeholder="Paramoy Life"
+              placeholder="Book Title"
               className="input input-bordered"
               {...register("title", { required: "Title is required" })}
             />
@@ -55,7 +54,7 @@ const AddBook = () => {
             </label>
             <input
               type="text"
-              placeholder="Jhankar Mahbub"
+              placeholder="Book Author"
               className="input input-bordered"
               {...register("author", { required: "Author is required" })}
             />
