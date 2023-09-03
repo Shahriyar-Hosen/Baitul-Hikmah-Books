@@ -13,8 +13,9 @@ const UpdateBook = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: book } = useGetBookQuery(id!);
-  const [updateBook, { isError, /*isLoading,*/ isSuccess }] =
-    useUpdateBookMutation();
+  const [updateBook, { isError, isSuccess }] = useUpdateBookMutation();
+
+  const { author, genre, imageUrl, publicationDate, title }: IBook = book || {};
 
   const {
     register,
@@ -33,11 +34,11 @@ const UpdateBook = () => {
 
   useEffect(() => {
     if (isSuccess)
-      toast.success(`Successfully updated book: ${book.title}`, {
+      toast.success(`Successfully updated book: ${title}`, {
         id: "success",
       });
     if (isError)
-      toast.error(`Failed to updated book: ${book.title}`, {
+      toast.error(`Failed to updated book: ${title}`, {
         id: "err",
       });
   }, [isSuccess, isError]);
@@ -53,8 +54,8 @@ const UpdateBook = () => {
             </label>
             <input
               type="text"
-              defaultValue={book?.title}
-              placeholder="Paramoy Life"
+              defaultValue={title}
+              placeholder="Book Title"
               className="input input-bordered"
               {...register("title")}
             />
@@ -65,8 +66,8 @@ const UpdateBook = () => {
             </label>
             <input
               type="text"
-              defaultValue={book?.author}
-              placeholder="Jhankar Mahbub"
+              defaultValue={author}
+              placeholder="Book Author"
               className="input input-bordered"
               {...register("author")}
             />
@@ -76,11 +77,12 @@ const UpdateBook = () => {
               <span className="label-text">Genre</span>
             </label>
             <select
-              defaultValue={book?.genre}
+              defaultValue={genre}
               className="select w-full max-w-xs"
               {...register("genre")}
             >
               <option selected>Self-Help</option>
+              <option>Fantasy</option>
               <option>Fiction</option>
               <option>Non-Fiction</option>
               <option>Religion</option>
@@ -96,8 +98,8 @@ const UpdateBook = () => {
             </label>
             <input
               type="date"
-              defaultValue={book?.publicationDate}
-              placeholder="Jhankar Mahbub"
+              defaultValue={publicationDate}
+              placeholder="Publication Date"
               className="input input-bordered"
               {...register("publicationDate", {
                 required: "Publication Date is required",
@@ -105,6 +107,21 @@ const UpdateBook = () => {
             />
             {errors.publicationDate && (
               <p className="form_error">{errors.publicationDate.message}</p>
+            )}
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Image Url</span>
+            </label>
+            <input
+              type="url"
+              defaultValue={imageUrl}
+              placeholder="Caver Image"
+              className="input input-bordered"
+              {...register("imageUrl", { required: "Image Url is required" })}
+            />
+            {errors.imageUrl && (
+              <p className="form_error">{errors.imageUrl.message}</p>
             )}
           </div>
           <div className="form-control mt-6">

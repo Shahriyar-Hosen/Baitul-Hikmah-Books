@@ -1,4 +1,6 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { BsChevronExpand } from "react-icons/bs";
+import { FcCheckmark } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BookCardWithImg from "../components/reuseable/BookCardWithImg";
@@ -7,18 +9,21 @@ import {
   clearFilter,
   filter,
   search,
+  sortBy,
+  sortOrder,
 } from "../redux/features/search/searchSlice";
 import { useAppSelector } from "../redux/hook";
-import { IBook } from "../types/interface";
+import { IBook, ISortBy, ISortOrder } from "../types/interface";
 
-export default function AllBooks() {
+const AllBooks = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { keyword, filterOptions } = useAppSelector((state) => state.search);
   const { data } = useGetAllBooksQuery({
     page: 1,
-    limit: 15,
-    sortBy: "genre",
+    limit: 50,
+    sortBy: filterOptions.sortBy,
+    sortOrder: filterOptions.sortOrder,
     genre: filterOptions.genre,
     searchTerm: keyword.toLocaleLowerCase(),
   });
@@ -43,6 +48,25 @@ export default function AllBooks() {
     };
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [sortByData, setSortByData] = useState<ISortBy>("createdAt");
+  const [sortOrderData, setSortOrderData] = useState<ISortOrder>(-1);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const sortFn = (value: ISortBy) => {
+    dispatch(sortBy(value));
+    setSortByData(value);
+    setIsOpen(false);
+  };
+
+  const sortOrderFn = (value: ISortOrder) => {
+    dispatch(sortOrder(value));
+    setSortOrderData(value);
+  };
+
   return (
     <section className="page_main ">
       <h2 className="section_title mt-16">All Books</h2>
@@ -56,7 +80,7 @@ export default function AllBooks() {
           />
           <select
             onChange={(e) => dispatch(filter(e.target.value))}
-            className="select border-2 border-slate-500 select-ghost w-full max-w-[200px]"
+            className="select border-2 border-slate-500 select-ghost w-full max-w-[150px]"
           >
             <option disabled selected>
               Pick a Genre
@@ -69,6 +93,108 @@ export default function AllBooks() {
             <option value="Religion">Religion</option>
             <option value="Adventure">Adventure</option>
           </select>
+
+          <div className="relative inline-block text-left">
+            <button
+              onClick={toggleDropdown}
+              type="button"
+              className="inline-flex justify-center w-full p-3 text-sm font-medium text-white bg-[#0f1729] border border-white border-opacity-60 rounded-md shadow-sm focus:outline-none"
+              id="options-menu"
+              aria-haspopup="true"
+              aria-expanded="true"
+            >
+              Sort&nbsp;By
+              <span className="text-white text-lg ml-2.5">
+                <BsChevronExpand />
+              </span>
+            </button>
+
+            {isOpen && (
+              <div
+                className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-[#0f1729] ring-1 border border-gray-500 z-50"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="options-menu"
+              >
+                <div className="py-1" role="none">
+                  <p
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    role="menuitem"
+                    onClick={() => sortFn("createdAt")}
+                  >
+                    <span className="text-lg mr-1">
+                      {sortByData === "createdAt" ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
+                    Date
+                  </p>
+                  <p
+                    onClick={() => sortFn("genre")}
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    role="menuitem"
+                  >
+                    <span className="text-lg mr-1">
+                      {sortByData === "genre" ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
+                    Genre
+                  </p>
+                  <p
+                    onClick={() => sortFn("publicationDate")}
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    role="menuitem"
+                  >
+                    <span className="text-lg mr-1">
+                      {sortByData === "publicationDate" ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
+                    Publication Date
+                  </p>
+
+                  <hr />
+
+                  <p
+                    onClick={() => sortOrderFn(-1)}
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    role="menuitem"
+                  >
+                    <span className="text-lg mr-1">
+                      {sortOrderData === -1 ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
+                    Ascending
+                  </p>
+                  <p
+                    onClick={() => sortOrderFn(1)}
+                    className="flex p-2 text-sm text-gray-100 hover:bg-gray-700 hover:text-white"
+                    role="menuitem"
+                  >
+                    <span className="text-lg mr-1">
+                      {sortOrderData === 1 ? (
+                        <FcCheckmark />
+                      ) : (
+                        <div className="w-4" />
+                      )}
+                    </span>
+                    Descending
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+
           <button
             onClick={() => dispatch(clearFilter())}
             className="btn btn-secondary"
@@ -90,4 +216,5 @@ export default function AllBooks() {
       </div>
     </section>
   );
-}
+};
+export default AllBooks;

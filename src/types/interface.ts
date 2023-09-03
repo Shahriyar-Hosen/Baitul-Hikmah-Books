@@ -29,12 +29,13 @@ export interface IWishlist {
   email: string;
   books: IBook[];
 }
-
+export type ISortBy = "genre" | "publicationDate" | "createdAt";
+export type ISortOrder = 1 | -1;
 export interface IFilterOptions {
   page?: number;
   limit?: number;
-  sortBy?: "genre" | "publicationDate" | "createdAt";
-  sortOrder?: 1 | -1;
+  sortBy?: ISortBy;
+  sortOrder?: ISortOrder;
   searchTerm?: string;
   genre?: IGenre | "";
   publicationDate?: string;
