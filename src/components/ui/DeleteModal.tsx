@@ -1,3 +1,5 @@
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { useDeleteBookMutation } from "../../redux/features/book/bookApi";
 import { IBook } from "../../types/interface";
 
@@ -6,8 +8,18 @@ interface IDeleteModalProps {
   setShowModal: (value: boolean) => void;
 }
 
-export default function DeleteModal({ book, setShowModal }: IDeleteModalProps) {
-  const [deleteBook] = useDeleteBookMutation();
+const DeleteModal = ({ book, setShowModal }: IDeleteModalProps) => {
+  const [deleteBook, { isSuccess, isError, error }] = useDeleteBookMutation();
+  const navigate = useNavigate();
+
+  if (isSuccess) {
+    toast.success(`Successfully, ${book.title} delete to book list❗`);
+    navigate("/all-books");
+  }
+  if (isError) {
+    toast.error(`Failed❗, ${book.title} was not removed from the book list❗
+    error: ${error}`);
+  }
 
   const onDeleteBook = () => {
     deleteBook(book._id);
@@ -25,8 +37,8 @@ export default function DeleteModal({ book, setShowModal }: IDeleteModalProps) {
         </button>
         <h3 className="font-bold text-lg">Warning!</h3>
         <p className="py-4">
-          Are you sure you want to delete book:{" "}
-          <span className="text-accent font-bold">{book.title}</span> by{" "}
+          Are you sure you want to delete book:&nbsp;
+          <span className="text-accent font-bold">{book.title}</span> by&nbsp;
           <span className="text-secondary">{book.author}</span>
         </p>
         <div className="modal-action">
@@ -37,4 +49,5 @@ export default function DeleteModal({ book, setShowModal }: IDeleteModalProps) {
       </form>
     </div>
   );
-}
+};
+export default DeleteModal;
